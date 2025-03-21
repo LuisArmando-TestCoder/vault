@@ -1,11 +1,10 @@
 import { walk, WalkEntry } from "https://deno.land/std@0.192.0/fs/walk.ts";
-import { globToRegExp } from "https://deno.land/std@0.192.0/path/glob.ts";
 
 async function main() {
   const baseFolder = Deno.args[0] || ".";
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
   const safeBaseName = baseFolder.replace(/[:\/\\]/g, "_");
-  const outputFilename = `output${timestamp}_${safeBaseName}.txt`;
+  const outputFilename = `.output${timestamp}_${safeBaseName}.txt`;
   let ignorePatterns: string[] = [];
   try {
     const gitignoreContent = await Deno.readTextFile(
